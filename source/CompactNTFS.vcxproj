@@ -108,6 +108,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="locationsmodel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="pch.cpp">
@@ -117,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h" />
+    <ClInclude Include="locationsmodel.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,14 @@
 #include "pch.h"
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent)
+MainWindow::MainWindow()
 {
-	ui.setupUi(this);
+  _ui.setupUi(this);
+
+  setupWidgets();
+}
+
+void MainWindow::setupWidgets()
+{
+  _ui.locations->setModel(&_locationsModel);
 }
