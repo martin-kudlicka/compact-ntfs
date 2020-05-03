@@ -1,14 +1,17 @@
-#pragma once
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include "ui_mainwindow.h"
 
 class MainWindow : public QMainWindow
 {
-	Q_OBJECT
+  Q_OBJECT
 
-public:
-	MainWindow(QWidget *parent = Q_NULLPTR);
+  public:
+    MainWindow();
 
-private:
-	Ui::MainWindowClass ui;
+  private:
+    Ui::MainWindow ui;
 };
+
+#endif
