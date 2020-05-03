@@ -3,4 +3,6 @@
 
 #include <QtWidgets>
 
+#include <MkCore>
+
 #endif
