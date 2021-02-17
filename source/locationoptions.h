@@ -12,7 +12,11 @@ class LocationOptions : public MSettings
              LocationOptions(const MUuidPtr& id);
     virtual ~LocationOptions() Q_DECL_OVERRIDE Q_DECL_EQ_DEFAULT;
 
-    QString path() const;
+    const MUuidPtr &id  () const;
+          QString   path() const;
+
+  private:
+    MUuidPtr _id;
 };
 
 #endif

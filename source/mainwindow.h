@@ -17,6 +17,9 @@ class MainWindow : public QMainWindow
     Ui::MainWindow _ui;
 
     void setupWidgets();
+
+  private Q_SLOTS:
+    void on_locationAdd_clicked(bool checked = false);
 };
 
 #endif
