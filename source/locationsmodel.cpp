@@ -59,9 +59,10 @@ QModelIndex LocationsModel::parent(const QModelIndex &child) const
 
 int LocationsModel::rowCount(const QModelIndex &parent /* QModelIndex() */) const
 {
-  Q_UNUSED(parent);
+  if (parent.isValid())
+  {
+    return 0;
+  }
 
-  // TODO
-
-  return 0;
+  return _locations.count();
 }
