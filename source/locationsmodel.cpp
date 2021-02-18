@@ -45,6 +45,24 @@ QVariant LocationsModel::data(const QModelIndex &index, int role /* Qt::DisplayR
   return QVariant();
 }
 
+QVariant LocationsModel::headerData(int section, Qt::Orientation orientation, int role /* Qt::DisplayRole */) const
+{
+  if (orientation == Qt::Orientation::Vertical || role != Qt::DisplayRole)
+  {
+    return QVariant();
+  }
+
+  switch (section)
+  {
+    case Column::Path:
+      return tr("Path");
+    default:
+      Q_UNREACHABLE();
+  }
+
+  return QVariant();
+}
+
 QModelIndex LocationsModel::index(int row, int column, const QModelIndex &parent /* QModelIndex() */) const
 {
   Q_UNUSED(parent);
