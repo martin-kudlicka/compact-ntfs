@@ -8,6 +8,16 @@ Locations::Locations()
   _settings.beginGroup(Property::Group);
 }
 
+quintptr Locations::count() const
+{
+  return _settings.childGroups().count();
+}
+
+MUuidPtr Locations::id(quintptr index) const
+{
+  return _settings.childGroups().at(index);
+}
+
 quintptr Locations::index(const MUuidPtr &id) const
 {
   quintptr indexVal = 0;
@@ -24,4 +34,9 @@ quintptr Locations::index(const MUuidPtr &id) const
 
   Q_UNREACHABLE();
   return std::numeric_limits<quintptr>::max();
+}
+
+bool Locations::isEmpty() const
+{
+  return count() == 0;
 }

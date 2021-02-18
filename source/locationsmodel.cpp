@@ -33,7 +33,12 @@ QModelIndex LocationsModel::index(int row, int column, const QModelIndex &parent
 {
   Q_UNUSED(parent);
 
-  return createIndex(row, column);
+  if (_locations.isEmpty())
+  {
+    return createIndex(row, column);
+  }
+
+  return createIndex(row, column, _locations.id(row));
 }
 
 bool LocationsModel::insertRows(int row, int count, const QModelIndex &parent /* QModelIndex() */)
