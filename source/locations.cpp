@@ -13,6 +13,11 @@ quintptr Locations::count() const
   return _settings.childGroups().count();
 }
 
+Location Locations::get(const MUuidPtr &id) const
+{
+  return Location(id);
+}
+
 MUuidPtr Locations::id(quintptr index) const
 {
   return _settings.childGroups().at(index);

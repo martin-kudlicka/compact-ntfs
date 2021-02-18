@@ -21,10 +21,26 @@ int LocationsModel::columnCount(const QModelIndex &parent /* QModelIndex() */) c
 
 QVariant LocationsModel::data(const QModelIndex &index, int role /* Qt::DisplayRole */) const
 {
-  Q_UNUSED(index);
-  Q_UNUSED(role);
+  auto location = _locations.get(index.internalId());
 
-  // TODO
+  struct DataGetter
+  {
+    Column                                            column;
+    int                                               role;
+    std::function<QVariant(const Location &location)> fnGetter;
+  };
+  static DataGetter getters[] =
+  {
+    { Column::Path, Qt::DisplayRole, [](const Location &location) { return location.options().path(); } }
+  };
+
+  for (const auto &getter : getters)
+  {
+    if (gsl::narrow<decltype(index.column())>(getter.column) == index.column() && getter.role == role)
+    {
+      return getter.fnGetter(location);
+    }
+  }
 
   return QVariant();
 }

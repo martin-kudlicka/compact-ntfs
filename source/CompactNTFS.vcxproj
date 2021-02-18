@@ -114,6 +114,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="location.cpp" />
     <ClCompile Include="locationdialog.cpp" />
     <ClCompile Include="locationoptions.cpp" />
     <ClCompile Include="locations.cpp" />
@@ -126,6 +127,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="location.h" />
     <ClInclude Include="resource.h" />
     <QtMoc Include="mainwindow.h" />
     <QtMoc Include="locationdialog.h" />
