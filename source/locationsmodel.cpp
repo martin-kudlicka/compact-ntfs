@@ -17,6 +17,11 @@ void LocationsModel::insert(const MUuidPtr &id)
   insertRow(row);
 }
 
+void LocationsModel::remove(const QModelIndex &index)
+{
+  removeRow(index.row());
+}
+
 int LocationsModel::columnCount(const QModelIndex &parent /* QModelIndex() */) const
 {
   Q_UNUSED(parent);
@@ -94,6 +99,17 @@ QModelIndex LocationsModel::parent(const QModelIndex &child) const
   Q_UNUSED(child);
 
   return QModelIndex();
+}
+
+bool LocationsModel::removeRows(int row, int count, const QModelIndex &parent /* QModelIndex() */)
+{
+  beginRemoveRows(parent, row, row + count - 1);
+
+  _locations.removeIndex(row);
+
+  endRemoveRows();
+
+  return true;
 }
 
 int LocationsModel::rowCount(const QModelIndex &parent /* QModelIndex() */) const

@@ -17,6 +17,7 @@ class LocationsModel : public QAbstractItemModel
 
     MUuidPtr id    (const QModelIndex &index) const;
     void     insert(const MUuidPtr &id);
+    void     remove(const QModelIndex &index);
 
   private:
     Locations _locations;
@@ -27,6 +28,7 @@ class LocationsModel : public QAbstractItemModel
     virtual QModelIndex index      (int row, int column, const QModelIndex &parent = QModelIndex())       const Q_DECL_OVERRIDE;
     virtual bool        insertRows (int row, int count, const QModelIndex &parent = QModelIndex())              Q_DECL_OVERRIDE;
     virtual QModelIndex parent     (const QModelIndex &child)                                             const Q_DECL_OVERRIDE;
+    virtual bool        removeRows (int row, int count, const QModelIndex &parent = QModelIndex())              Q_DECL_OVERRIDE;
     virtual int         rowCount   (const QModelIndex &parent = QModelIndex())                            const Q_DECL_OVERRIDE;
 };
 

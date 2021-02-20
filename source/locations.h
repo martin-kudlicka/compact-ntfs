@@ -13,11 +13,12 @@ class Locations
 
     Locations();
 
-    quintptr count  ()                   const;
-    Location get    (const MUuidPtr &id) const;
-    MUuidPtr id     (quintptr index)     const;
-    quintptr index  (const MUuidPtr &id) const;
-    bool     isEmpty()                   const;
+    quintptr count      ()                   const;
+    Location get        (const MUuidPtr &id) const;
+    MUuidPtr id         (quintptr index)     const;
+    quintptr index      (const MUuidPtr &id) const;
+    bool     isEmpty    ()                   const;
+    void     removeIndex(quintptr index);
 
   private:
     QSettings _settings;

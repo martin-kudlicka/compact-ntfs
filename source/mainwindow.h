@@ -21,6 +21,7 @@ class MainWindow : public QMainWindow
   private Q_SLOTS:
     void on_locationAdd_clicked       (bool checked = false);
     void on_locationEdit_clicked      (bool checked = false);
+    void on_locationRemove_clicked    (bool checked = false);
     void on_locations_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) const;
 };
 

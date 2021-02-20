@@ -45,3 +45,10 @@ bool Locations::isEmpty() const
 {
   return count() == 0;
 }
+
+void Locations::removeIndex(quintptr index)
+{
+  auto id2 = id(index);
+
+  _settings.remove(id2.toString());
+}

@@ -43,6 +43,15 @@ void MainWindow::on_locationEdit_clicked(bool checked /* false */)
   locationDialog.exec();
 }
 
+void MainWindow::on_locationRemove_clicked(bool checked /* false */)
+{
+  Q_UNUSED(checked);
+
+  auto index = _ui.locations->currentIndex();
+
+  _locationsModel.remove(index);
+}
+
 void MainWindow::on_locations_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) const
 {
   Q_UNUSED(selected);
@@ -51,4 +60,5 @@ void MainWindow::on_locations_selectionChanged(const QItemSelection &selected, c
   auto isSelected = !_ui.locations->selectionModel()->selectedRows().isEmpty();
 
   _ui.locationEdit->setEnabled(isSelected);
+  _ui.locationRemove->setEnabled(isSelected);
 }
