@@ -15,10 +15,11 @@ class LocationsModel : public QAbstractItemModel
              LocationsModel();
     virtual ~LocationsModel() Q_DECL_OVERRIDE Q_DECL_EQ_DEFAULT;
 
-          MUuidPtr  id        (const QModelIndex &index) const;
-          void      insert    (const MUuidPtr &id);
+          MUuidPtr   id       (const QModelIndex &index) const;
+          void       insert   (const MUuidPtr &id);
+          bool       isEmpty  ()                         const;
     const Locations &locations()                         const;
-          void      remove    (const QModelIndex &index);
+          void       remove   (const QModelIndex &index);
 
   private:
     Locations _locations;

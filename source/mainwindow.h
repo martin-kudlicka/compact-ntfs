@@ -24,6 +24,8 @@ class MainWindow : public QMainWindow
     void on_locationAdd_clicked         (bool checked = false);
     void on_locationEdit_clicked        (bool checked = false);
     void on_locationRemove_clicked      (bool checked = false);
+    void on_locations_rowsInserted      (const QModelIndex &parent, int first, int last) const;
+    void on_locations_rowsRemoved       (const QModelIndex &parent, int first, int last) const;
     void on_locations_selectionChanged  (const QItemSelection &selected, const QItemSelection &deselected) const;
 };
 

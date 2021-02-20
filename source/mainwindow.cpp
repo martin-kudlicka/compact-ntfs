@@ -15,7 +15,11 @@ void MainWindow::setupWidgets()
 {
   _ui.locations->setModel(&_locationsModel);
 
+  connect(&_locationsModel,                &LocationsModel::rowsInserted,          this, &MainWindow::on_locations_rowsInserted);
+  connect(&_locationsModel,                &LocationsModel::rowsRemoved,           this, &MainWindow::on_locations_rowsRemoved);
   connect(_ui.locations->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MainWindow::on_locations_selectionChanged);
+
+  _ui.actionStartCompact->setEnabled(!_locationsModel.isEmpty());
 }
 
 void MainWindow::on_actionOptions_triggered(bool checked /* false */)
@@ -70,6 +74,24 @@ void MainWindow::on_locationRemove_clicked(bool checked /* false */)
   auto index = _ui.locations->currentIndex();
 
   _locationsModel.remove(index);
+}
+
+void MainWindow::on_locations_rowsInserted(const QModelIndex &parent, int first, int last) const
+{
+  Q_UNUSED(parent);
+  Q_UNUSED(first);
+  Q_UNUSED(last);
+
+  _ui.actionStartCompact->setEnabled(true);
+}
+
+void MainWindow::on_locations_rowsRemoved(const QModelIndex &parent, int first, int last) const
+{
+  Q_UNUSED(parent);
+  Q_UNUSED(first);
+  Q_UNUSED(last);
+
+  _ui.actionStartCompact->setEnabled(!_locationsModel.isEmpty());
 }
 
 void MainWindow::on_locations_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) const

@@ -17,6 +17,11 @@ void LocationsModel::insert(const MUuidPtr &id)
   insertRow(row);
 }
 
+bool LocationsModel::isEmpty() const
+{
+  return rowCount() == 0;
+}
+
 const Locations &LocationsModel::locations() const
 {
   return _locations;
@@ -36,7 +41,7 @@ int LocationsModel::columnCount(const QModelIndex &parent /* QModelIndex() */) c
 
 QVariant LocationsModel::data(const QModelIndex &index, int role /* Qt::DisplayRole */) const
 {
-  auto location = _locations.get(index.internalId());
+  auto location = _locations.get(MUuidPtr(index.internalId()));
 
   struct DataGetter
   {
