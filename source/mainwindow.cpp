@@ -13,6 +13,8 @@ MainWindow::MainWindow()
 void MainWindow::setupWidgets()
 {
   _ui.locations->setModel(&_locationsModel);
+
+  connect(_ui.locations->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MainWindow::on_locations_selectionChanged);
 }
 
 void MainWindow::on_locationAdd_clicked(bool checked /* false */)
@@ -39,4 +41,14 @@ void MainWindow::on_locationEdit_clicked(bool checked /* false */)
 
   LocationDialog locationDialog(id, this);
   locationDialog.exec();
+}
+
+void MainWindow::on_locations_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) const
+{
+  Q_UNUSED(selected);
+  Q_UNUSED(deselected);
+
+  auto isSelected = !_ui.locations->selectionModel()->selectedRows().isEmpty();
+
+  _ui.locationEdit->setEnabled(isSelected);
 }
