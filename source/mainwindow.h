@@ -19,7 +19,8 @@ class MainWindow : public QMainWindow
     void setupWidgets();
 
   private Q_SLOTS:
-    void on_locationAdd_clicked(bool checked = false);
+    void on_locationAdd_clicked (bool checked = false);
+    void on_locationEdit_clicked(bool checked = false);
 };
 
 #endif

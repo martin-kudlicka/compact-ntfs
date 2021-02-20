@@ -29,3 +29,14 @@ void MainWindow::on_locationAdd_clicked(bool checked /* false */)
 
   // TODO
 }
+
+void MainWindow::on_locationEdit_clicked(bool checked /* false */)
+{
+  Q_UNUSED(checked);
+
+  auto index = _ui.locations->currentIndex();
+  auto id    = _locationsModel.id(index);
+
+  LocationDialog locationDialog(id, this);
+  locationDialog.exec();
+}

@@ -5,6 +5,11 @@ LocationsModel::LocationsModel()
 {
 }
 
+MUuidPtr LocationsModel::id(const QModelIndex &index) const
+{
+  return index.internalId();
+}
+
 void LocationsModel::insert(const MUuidPtr &id)
 {
   auto row = _locations.index(id);

@@ -15,7 +15,8 @@ class LocationsModel : public QAbstractItemModel
              LocationsModel();
     virtual ~LocationsModel() Q_DECL_OVERRIDE Q_DECL_EQ_DEFAULT;
 
-    void insert(const MUuidPtr &id);
+    MUuidPtr id    (const QModelIndex &index) const;
+    void     insert(const MUuidPtr &id);
 
   private:
     Locations _locations;

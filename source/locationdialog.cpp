@@ -20,6 +20,8 @@ const LocationOptions &LocationDialog::options() const
 void LocationDialog::setupSettings()
 {
   _widgetSettings.setWidget(LocationOptions::Property::Path, _ui.path);
+
+  _widgetSettings.load();
 }
 
 void LocationDialog::accept()
