@@ -107,6 +107,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionStartCompact"/>
+   <addaction name="actionStopCompact"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Exit">
@@ -117,6 +119,16 @@
   <action name="actionOptions">
    <property name="text">
     <string>&amp;Options...</string>
+   </property>
+  </action>
+  <action name="actionStartCompact">
+   <property name="text">
+    <string>&amp;Start</string>
+   </property>
+  </action>
+  <action name="actionStopCompact">
+   <property name="text">
+    <string>&amp;Stop</string>
    </property>
   </action>
  </widget>

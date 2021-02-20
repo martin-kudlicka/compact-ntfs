@@ -13,9 +13,15 @@ quintptr Locations::count() const
   return _settings.childGroups().count();
 }
 
-Location Locations::get(const MUuidPtr &id) const
+LocationSPtr Locations::get(const MUuidPtr &id) const
 {
-  return Location(id);
+  return QSharedPointer<Location>::create(id);
+}
+
+LocationSPtr Locations::get(quintptr index) const
+{
+  auto id2 = id(index);
+  return get(id2);
 }
 
 MUuidPtr Locations::id(quintptr index) const

@@ -19,11 +19,12 @@ class MainWindow : public QMainWindow
     void setupWidgets();
 
   private Q_SLOTS:
-    void on_actionOptions_triggered   (bool checked = false);
-    void on_locationAdd_clicked       (bool checked = false);
-    void on_locationEdit_clicked      (bool checked = false);
-    void on_locationRemove_clicked    (bool checked = false);
-    void on_locations_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) const;
+    void on_actionOptions_triggered     (bool checked = false);
+    void on_actionStartCompact_triggered(bool checked = false);
+    void on_locationAdd_clicked         (bool checked = false);
+    void on_locationEdit_clicked        (bool checked = false);
+    void on_locationRemove_clicked      (bool checked = false);
+    void on_locations_selectionChanged  (const QItemSelection &selected, const QItemSelection &deselected) const;
 };
 
 #endif

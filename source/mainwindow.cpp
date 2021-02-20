@@ -26,6 +26,19 @@ void MainWindow::on_actionOptions_triggered(bool checked /* false */)
   optionsDialog.exec();
 }
 
+void MainWindow::on_actionStartCompact_triggered(bool checked /* false */)
+{
+  Q_UNUSED(checked);
+
+  QVector<LocationSPtr> locations;
+  for (decltype(_locationsModel.locations().count()) index = 0; index < _locationsModel.locations().count(); ++index)
+  {
+    locations.append(_locationsModel.locations().get(index));
+  }
+
+  // TODO
+}
+
 void MainWindow::on_locationAdd_clicked(bool checked /* false */)
 {
   Q_UNUSED(checked);

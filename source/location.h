@@ -14,4 +14,6 @@ class Location
     LocationOptions _options;
 };
 
+using LocationSPtr = QSharedPointer<Location>;
+
 #endif

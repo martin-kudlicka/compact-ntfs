@@ -17,6 +17,11 @@ void LocationsModel::insert(const MUuidPtr &id)
   insertRow(row);
 }
 
+const Locations &LocationsModel::locations() const
+{
+  return _locations;
+}
+
 void LocationsModel::remove(const QModelIndex &index)
 {
   removeRow(index.row());
@@ -37,11 +42,11 @@ QVariant LocationsModel::data(const QModelIndex &index, int role /* Qt::DisplayR
   {
     Column                                            column;
     int                                               role;
-    std::function<QVariant(const Location &location)> fnGetter;
+    std::function<QVariant(const LocationSPtr &location)> fnGetter;
   };
   static DataGetter getters[] =
   {
-    { Column::Path, Qt::DisplayRole, [](const Location &location) { return location.options().path(); } }
+    { Column::Path, Qt::DisplayRole, [](const LocationSPtr &location) { return location->options().path(); } }
   };
 
   for (const auto &getter : getters)
