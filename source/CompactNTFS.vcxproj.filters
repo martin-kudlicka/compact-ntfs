@@ -54,6 +54,12 @@
     <ClCompile Include="location.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="optionsdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="options.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -62,12 +68,18 @@
     <QtMoc Include="locationdialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="optionsdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="locationdialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="optionsdialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -93,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="location.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="options.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

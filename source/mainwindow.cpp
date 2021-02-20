@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 
 #include "locationdialog.h"
+#include "optionsdialog.h"
 
 MainWindow::MainWindow()
 {
@@ -17,6 +18,14 @@ void MainWindow::setupWidgets()
   connect(_ui.locations->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MainWindow::on_locations_selectionChanged);
 }
 
+void MainWindow::on_actionOptions_triggered(bool checked /* false */)
+{
+  Q_UNUSED(checked);
+
+  OptionsDialog optionsDialog(this);
+  optionsDialog.exec();
+}
+
 void MainWindow::on_locationAdd_clicked(bool checked /* false */)
 {
   Q_UNUSED(checked);
@@ -28,8 +37,6 @@ void MainWindow::on_locationAdd_clicked(bool checked /* false */)
   }
 
   _locationsModel.insert(locationDialog.options().id());
-
-  // TODO
 }
 
 void MainWindow::on_locationEdit_clicked(bool checked /* false */)
