@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>182</width>
-    <height>79</height>
+    <width>200</width>
+    <height>105</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,6 +28,23 @@
      </item>
      <item row="0" column="1">
       <widget class="QComboBox" name="method"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QCheckBox" name="lastWriteOffsetCheck">
+       <property name="text">
+        <string>Last &amp;write before</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="lastWriteOffsetDays">
+       <property name="suffix">
+        <string> days</string>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -88,12 +105,12 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>288</x>
-     <y>258</y>
+     <x>108</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
-     <y>254</y>
+     <y>104</y>
     </hint>
    </hints>
   </connection>
@@ -104,12 +121,12 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>369</x>
-     <y>258</y>
+     <x>189</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
-     <y>282</y>
+     <y>104</y>
     </hint>
    </hints>
   </connection>

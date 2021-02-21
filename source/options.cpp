@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "options.h"
 
-const QString Options::Property::Method = "method";
+const QString Options::Property::LastWriteOffsetCheck = "lastWriteOffsetCheck";
+const QString Options::Property::LastWriteOffsetDays  = "lastWriteOffsetDays";
+const QString Options::Property::Method               = "method";
 
 MLazySingleton<Options> gOptions;
 

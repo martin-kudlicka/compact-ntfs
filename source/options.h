@@ -6,6 +6,8 @@ class Options : public MSettings
   public:
     struct Property
     {
+      static const QString LastWriteOffsetCheck;
+      static const QString LastWriteOffsetDays;
       static const QString Method;
     };
 

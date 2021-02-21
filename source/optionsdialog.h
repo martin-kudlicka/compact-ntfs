@@ -19,6 +19,9 @@ class OptionsDialog : public QDialog
     void setupWidgets();
 
     virtual void accept() Q_DECL_OVERRIDE;
+
+  private Q_SLOTS:
+    void on_lastWriteOffsetCheck_stateChanged(int state) const;
 };
 
 #endif
