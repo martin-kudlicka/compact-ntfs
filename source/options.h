@@ -14,7 +14,9 @@ class Options : public MSettings
              Options();
     virtual ~Options() Q_DECL_OVERRIDE Q_DECL_EQ_DEFAULT;
 
-    MCompact::Method method() const;
+    bool             lastWriteOffsetCheck() const;
+    quintptr         lastWriteOffsetDays () const;
+    MCompact::Method method              () const;
 };
 
 extern MLazySingleton<Options> gOptions;

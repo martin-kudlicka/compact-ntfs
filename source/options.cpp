@@ -12,6 +12,16 @@ Options::Options()
   beginGroup("options");
 }
 
+bool Options::lastWriteOffsetCheck() const
+{
+  return value(Property::LastWriteOffsetCheck).toBool();
+}
+
+quintptr Options::lastWriteOffsetDays() const
+{
+  return value(Property::LastWriteOffsetDays).toUInt();
+}
+
 MCompact::Method Options::method() const
 {
   return gsl::narrow<MCompact::Method>(value(Property::Method).toUInt());

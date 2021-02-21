@@ -28,6 +28,15 @@ void Compactor::processDir(const QDir &dir) const
 
 void Compactor::processFile(const QFileInfo &file) const
 {
+  if (gOptions->lastWriteOffsetCheck())
+  {
+    auto maxLastWriteTime = QDateTime::currentDateTimeUtc().addDays(-1 * gsl::narrow<qint64>(gOptions->lastWriteOffsetDays()));
+    if (file.lastModified() > maxLastWriteTime)
+    {
+      return;
+    }
+  }
+
   MCompact compact(file.filePath());
   if (compact.method() != gOptions->method())
   {
