@@ -9,3 +9,8 @@ Options::Options()
 {
   beginGroup("options");
 }
+
+MCompact::Method Options::method() const
+{
+  return gsl::narrow<MCompact::Method>(value(Property::Method).toUInt());
+}

@@ -10,6 +10,7 @@ class Compactor
 
   private:
     void processDir     (const QDir &dir)              const;
+    void processFile    (const QFileInfo &file)        const;
     void processLocation(const LocationSPtr &location) const;
 };
 

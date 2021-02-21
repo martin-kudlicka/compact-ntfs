@@ -20,11 +20,11 @@ void OptionsDialog::setupSettings()
 
 void OptionsDialog::setupWidgets()
 {
-  _ui.method->addItem("NTFS",      "NTFS");
-  _ui.method->addItem("XPRESS4K",  "XPRESS4K");
-  _ui.method->addItem("XPRESS8K",  "XPRESS8K");
-  _ui.method->addItem("XPRESS16K", "XPRESS16K");
-  _ui.method->addItem("LZX",       "LZX");
+  _ui.method->addItem("NTFS",      gsl::narrow<quintptr>(MCompact::Method::Ntfs));
+  _ui.method->addItem("XPRESS4K",  gsl::narrow<quintptr>(MCompact::Method::Xpress4K));
+  _ui.method->addItem("XPRESS8K",  gsl::narrow<quintptr>(MCompact::Method::Xpress8K));
+  _ui.method->addItem("XPRESS16K", gsl::narrow<quintptr>(MCompact::Method::Xpress16K));
+  _ui.method->addItem("LZX",       gsl::narrow<quintptr>(MCompact::Method::Lzx));
 }
 
 void OptionsDialog::accept()

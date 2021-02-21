@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "compactor.h"
 
+#include "options.h"
+
 void Compactor::start(const LocationSPtrList &locations) const\
 {
   for (const auto &location : locations)
@@ -11,12 +13,25 @@ void Compactor::start(const LocationSPtrList &locations) const\
 
 void Compactor::processDir(const QDir &dir) const
 {
-  // TODO
+  auto entries = dir.entryInfoList(QStringList{}, QDir::Files);
+  for (const auto &entry : entries)
+  {
+    processFile(entry);
+  }
 
-  auto entries = dir.entryInfoList(QStringList{}, QDir::AllDirs | QDir::NoDotAndDotDot);
+  entries = dir.entryInfoList(QStringList{}, QDir::AllDirs | QDir::NoDotAndDotDot);
   for (const auto &entry : entries)
   {
     processDir(entry.filePath());
+  }
+}
+
+void Compactor::processFile(const QFileInfo &file) const
+{
+  MCompact compact(file.filePath());
+  if (compact.method() != gOptions->method())
+  {
+    compact.setMethod(gOptions->method());
   }
 }
 

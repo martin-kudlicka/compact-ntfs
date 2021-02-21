@@ -6,6 +6,7 @@
 #include <QtWidgets>
 
 #include <MkCore>
+#include <MkCompact>
 #include <MkWidgets>
 
 #endif
