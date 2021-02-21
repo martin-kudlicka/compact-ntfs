@@ -37,10 +37,17 @@ void Compactor::processFile(const QFileInfo &file) const
     }
   }
 
-  MCompact compact(file.filePath());
-  if (compact.method() != gOptions->method())
+  try
   {
-    compact.setMethod(gOptions->method());
+    MCompact compact(file.filePath());
+    if (compact.method() != gOptions->method())
+    {
+      compact.setMethod(gOptions->method());
+    }
+  }
+  catch (const MException::MCritical &exception)
+  {
+    mCriticalEx(exception);
   }
 }
 
