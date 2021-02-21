@@ -3,6 +3,7 @@
 
 #include "locationdialog.h"
 #include "optionsdialog.h"
+#include "compactor.h"
 
 MainWindow::MainWindow()
 {
@@ -34,13 +35,13 @@ void MainWindow::on_actionStartCompact_triggered(bool checked /* false */)
 {
   Q_UNUSED(checked);
 
-  QVector<LocationSPtr> locations;
+  LocationSPtrList locations;
   for (decltype(_locationsModel.locations().count()) index = 0; index < _locationsModel.locations().count(); ++index)
   {
     locations.append(_locationsModel.locations().get(index));
   }
 
-  // TODO
+  Compactor().start(locations);
 }
 
 void MainWindow::on_locationAdd_clicked(bool checked /* false */)

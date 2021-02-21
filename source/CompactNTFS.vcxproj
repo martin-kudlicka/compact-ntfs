@@ -114,6 +114,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="compactor.cpp" />
     <ClCompile Include="location.cpp" />
     <ClCompile Include="locationdialog.cpp" />
     <ClCompile Include="locationoptions.cpp" />
@@ -129,6 +130,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="compactor.h" />
     <ClInclude Include="location.h" />
     <QtMoc Include="optionsdialog.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\..\..\..\intermediate\compactntfs\$(ConfigurationName);.\..\..\..\intermediate\compactntfs;$(QTDIR)\include\QtNetwork</IncludePath>
