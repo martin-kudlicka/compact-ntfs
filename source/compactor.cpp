@@ -3,7 +3,15 @@
 
 #include "options.h"
 
-void Compactor::start(const LocationSPtrList &locations) const\
+Compactor::Compactor()
+{
+  if (gOptions->excludeCheck())
+  {
+    _excludes = gOptions->excludes().split(';');
+  }
+}
+
+void Compactor::start(const LocationSPtrList &locations) const
 {
   for (const auto &location : locations)
   {
@@ -11,8 +19,30 @@ void Compactor::start(const LocationSPtrList &locations) const\
   }
 }
 
+bool Compactor::isExcluded(const QString &filePath) const
+{
+  if (!_excludes.empty())
+  {
+    for (const auto &exclude : _excludes)
+    {
+      QRegExp regExp(exclude, Qt::CaseInsensitive, QRegExp::Wildcard);
+      if (regExp.exactMatch(filePath))
+      {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 void Compactor::processDir(const QDir &dir) const
 {
+  if (isExcluded(dir.path()))
+  {
+    return;
+  }
+
   auto entries = dir.entryInfoList(QStringList{}, QDir::Files);
   for (const auto &entry : entries)
   {
@@ -28,6 +58,11 @@ void Compactor::processDir(const QDir &dir) const
 
 void Compactor::processFile(const QFileInfo &file) const
 {
+  if (isExcluded(file.filePath()))
+  {
+    return;
+  }
+
   if (gOptions->lastWriteOffsetCheck())
   {
     auto maxLastWriteTime = QDateTime::currentDateTimeUtc().addDays(-1 * gsl::narrow<qint64>(gOptions->lastWriteOffsetDays()));

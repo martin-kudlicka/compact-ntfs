@@ -11,6 +11,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) : QDialog(parent), _widgetSettings
   setupSettings();
 
   _ui.lastWriteOffsetDays->setEnabled(_ui.lastWriteOffsetCheck->isChecked());
+  _ui.excludes->setEnabled(_ui.excludeCheck->isChecked());
 }
 
 void OptionsDialog::setupSettings()
@@ -18,6 +19,8 @@ void OptionsDialog::setupSettings()
   _widgetSettings.setWidget(Options::Property::Method,               _ui.method);
   _widgetSettings.setWidget(Options::Property::LastWriteOffsetCheck, _ui.lastWriteOffsetCheck);
   _widgetSettings.setWidget(Options::Property::LastWriteOffsetDays,  _ui.lastWriteOffsetDays);
+  _widgetSettings.setWidget(Options::Property::ExcludeCheck,         _ui.excludeCheck);
+  _widgetSettings.setWidget(Options::Property::Excludes,             _ui.excludes);
 
   _widgetSettings.load();
 }
@@ -36,6 +39,11 @@ void OptionsDialog::accept()
   _widgetSettings.save();
 
   QDialog::accept();
+}
+
+void OptionsDialog::on_excludeCheck_stateChanged(int state) const
+{
+  _ui.excludes->setEnabled(state == Qt::Checked);
 }
 
 void OptionsDialog::on_lastWriteOffsetCheck_stateChanged(int state) const

@@ -21,6 +21,7 @@ class OptionsDialog : public QDialog
     virtual void accept() Q_DECL_OVERRIDE;
 
   private Q_SLOTS:
+    void on_excludeCheck_stateChanged        (int state) const;
     void on_lastWriteOffsetCheck_stateChanged(int state) const;
 };
 
