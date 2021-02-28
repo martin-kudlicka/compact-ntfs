@@ -15,6 +15,7 @@ MainWindow::MainWindow()
 void MainWindow::setupWidgets()
 {
   _ui.locations->setModel(&_locationsModel);
+  _ui.logMessages->setModel(&_messageLogModel);
 
   connect(&_locationsModel,                &LocationsModel::rowsInserted,          this, &MainWindow::on_locations_rowsInserted);
   connect(&_locationsModel,                &LocationsModel::rowsRemoved,           this, &MainWindow::on_locations_rowsRemoved);

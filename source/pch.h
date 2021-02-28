@@ -7,6 +7,7 @@
 
 #include <MkCore>
 #include <MkCompact>
+#include <MkGui>
 #include <MkWidgets>
 
 #endif
