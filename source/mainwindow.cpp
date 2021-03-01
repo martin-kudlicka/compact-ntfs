@@ -20,6 +20,7 @@ void MainWindow::setupWidgets()
   _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Timestamp), QHeaderView::ResizeToContents);
   _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Category),  QHeaderView::ResizeToContents);
   _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Type),      QHeaderView::ResizeToContents);
+  _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Error),     QHeaderView::ResizeToContents);
   _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Message),   QHeaderView::Stretch);
 
   connect(&_locationsModel,                &LocationsModel::rowsInserted,          this, &MainWindow::on_locations_rowsInserted);
