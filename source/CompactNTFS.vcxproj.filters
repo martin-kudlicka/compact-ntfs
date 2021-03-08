@@ -74,6 +74,9 @@
     <QtMoc Include="optionsdialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="compactor.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="mainwindow.ui">
@@ -111,9 +114,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="options.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="compactor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

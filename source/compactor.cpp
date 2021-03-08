@@ -5,21 +5,35 @@
 
 Compactor::Compactor()
 {
-  if (gOptions->excludeCheck())
-  {
-    _excludes = gOptions->excludes().split(';');
-  }
+  connect(&_workerWatcher, &QFutureWatcher<void>::finished, this, &Compactor::finished);
 }
 
 void Compactor::start(const LocationSPtrList &locations)
 {
+  _canceled = false;
   _worker = QtConcurrent::run([this, locations]
   {
+    if (gOptions->excludeCheck())
+    {
+      _excludes = gOptions->excludes().split(';');
+    }
+    else
+    {
+      _excludes.clear();
+    }
+
     for (const auto &location : locations)
     {
       processLocation(location);
     }
   });
+  _workerWatcher.setFuture(_worker);
+}
+
+void Compactor::stop()
+{
+  _canceled = true;
+  _worker.cancel();
 }
 
 bool Compactor::isExcluded(const QString &filePath) const
@@ -41,7 +55,7 @@ bool Compactor::isExcluded(const QString &filePath) const
 
 void Compactor::processDir(const QDir &dir) const
 {
-  if (isExcluded(dir.path()))
+  if (_canceled || isExcluded(dir.path()))
   {
     return;
   }
@@ -61,7 +75,7 @@ void Compactor::processDir(const QDir &dir) const
 
 void Compactor::processFile(const QFileInfo &file) const
 {
-  if (isExcluded(file.filePath()))
+  if (_canceled || isExcluded(file.filePath()))
   {
     return;
   }

@@ -9,6 +9,8 @@ MainWindow::MainWindow()
   _ui.setupUi(this);
 
   setupWidgets();
+
+  connect(&_compactor, &Compactor::finished, this, &MainWindow::on_compactor_finished);
 }
 
 void MainWindow::setupWidgets()
@@ -41,6 +43,8 @@ void MainWindow::on_actionStartCompact_triggered(bool checked /* false */)
 {
   Q_UNUSED(checked);
 
+  _ui.actionStartCompact->setEnabled(false);
+
   LocationSPtrList locations;
   for (decltype(_locationsModel.locations().count()) index = 0; index < _locationsModel.locations().count(); ++index)
   {
@@ -48,6 +52,23 @@ void MainWindow::on_actionStartCompact_triggered(bool checked /* false */)
   }
 
   _compactor.start(locations);
+
+  _ui.actionStopCompact->setEnabled(true);
+}
+
+void MainWindow::on_actionStopCompact_triggered(bool checked /* false */)
+{
+  Q_UNUSED(checked);
+
+  _ui.actionStopCompact->setEnabled(false);
+
+  _compactor.stop();
+}
+
+void MainWindow::on_compactor_finished()
+{
+  _ui.actionStopCompact->setEnabled(false);
+  _ui.actionStartCompact->setEnabled(true);
 }
 
 void MainWindow::on_locationAdd_clicked(bool checked /* false */)
