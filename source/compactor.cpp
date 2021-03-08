@@ -65,7 +65,7 @@ void Compactor::processFile(const QFileInfo &file) const
 
   if (gOptions->lastWriteOffsetCheck())
   {
-    auto maxLastWriteTime = QDateTime::currentDateTimeUtc().addDays(-1 * gsl::narrow<qint64>(gOptions->lastWriteOffsetDays()));
+    auto maxLastWriteTime = QDateTime::currentDateTimeUtc().addDays(- gsl::narrow<qint64>(gOptions->lastWriteOffsetDays()));
     if (file.lastModified() > maxLastWriteTime)
     {
       return;
@@ -78,11 +78,16 @@ void Compactor::processFile(const QFileInfo &file) const
     if (compact.method() != gOptions->method())
     {
       compact.setMethod(gOptions->method());
+
+      mInfo() << "compacted " << file.filePath();
     }
   }
   catch (const MException::MCritical &exception)
   {
-    mCriticalEx(exception);
+    if (exception.error() != ERROR_COMPRESSION_NOT_BENEFICIAL)
+    {
+      mCriticalEx(exception);
+    }
   }
 }
 
