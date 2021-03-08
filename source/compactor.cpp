@@ -10,7 +10,6 @@ Compactor::Compactor()
 
 void Compactor::start(const LocationSPtrList &locations)
 {
-  _canceled = false;
   _worker = QtConcurrent::run([this, locations]
   {
     if (gOptions->excludeCheck())
@@ -32,7 +31,6 @@ void Compactor::start(const LocationSPtrList &locations)
 
 void Compactor::stop()
 {
-  _canceled = true;
   _worker.cancel();
 }
 
@@ -55,7 +53,7 @@ bool Compactor::isExcluded(const QString &filePath) const
 
 void Compactor::processDir(const QDir &dir) const
 {
-  if (_canceled || isExcluded(dir.path()))
+  if (_worker.isCanceled() || isExcluded(dir.path()))
   {
     return;
   }
@@ -75,7 +73,7 @@ void Compactor::processDir(const QDir &dir) const
 
 void Compactor::processFile(const QFileInfo &file) const
 {
-  if (_canceled || isExcluded(file.filePath()))
+  if (_worker.isCanceled() || isExcluded(file.filePath()))
   {
     return;
   }

@@ -14,7 +14,6 @@ class Compactor : public QObject
     void stop();
 
   private:
-    bool                 _canceled;
     QFuture<void>        _worker;
     QFutureWatcher<void> _workerWatcher;
     QStringList          _excludes;
