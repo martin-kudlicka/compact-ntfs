@@ -8,10 +8,11 @@ class Compactor
   public:
     Compactor();
 
-    void start(const LocationSPtrList &locations) const;
+    void start(const LocationSPtrList &locations);
 
   private:
-    QStringList _excludes;
+    QFuture<void> _worker;
+    QStringList   _excludes;
 
     bool isExcluded     (const QString &filePath)      const;
     void processDir     (const QDir &dir)              const;

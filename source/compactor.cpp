@@ -11,12 +11,15 @@ Compactor::Compactor()
   }
 }
 
-void Compactor::start(const LocationSPtrList &locations) const
+void Compactor::start(const LocationSPtrList &locations)
 {
-  for (const auto &location : locations)
+  _worker = QtConcurrent::run([this, locations]
   {
-    processLocation(location);
-  }
+    for (const auto &location : locations)
+    {
+      processLocation(location);
+    }
+  });
 }
 
 bool Compactor::isExcluded(const QString &filePath) const

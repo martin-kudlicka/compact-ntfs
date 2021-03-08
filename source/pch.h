@@ -3,6 +3,7 @@
 
 #include <gsl/gsl>
 
+#include <QtConcurrent>
 #include <QtWidgets>
 
 #include <MkCore>

@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "compactor.h"
 #include "ui_mainwindow.h"
 #include "locationsmodel.h"
 
@@ -13,6 +14,7 @@ class MainWindow : public QMainWindow
     virtual ~MainWindow() Q_DECL_OVERRIDE Q_DECL_EQ_DEFAULT;
 
   private:
+    Compactor        _compactor;
     LocationsModel   _locationsModel;
     MMessageLogModel _messageLogModel;
     Ui::MainWindow   _ui;

@@ -3,7 +3,6 @@
 
 #include "locationdialog.h"
 #include "optionsdialog.h"
-#include "compactor.h"
 
 MainWindow::MainWindow()
 {
@@ -48,7 +47,7 @@ void MainWindow::on_actionStartCompact_triggered(bool checked /* false */)
     locations.append(_locationsModel.locations().get(index));
   }
 
-  Compactor().start(locations);
+  _compactor.start(locations);
 }
 
 void MainWindow::on_locationAdd_clicked(bool checked /* false */)
