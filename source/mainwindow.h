@@ -24,6 +24,7 @@ class MainWindow : public QMainWindow
   private Q_SLOTS:
     void on_actionAbout_triggered       (bool checked = false);
     void on_actionOptions_triggered     (bool checked = false);
+    void on_actionSendFeedback_triggered(bool checked = false) const;
     void on_actionStartCompact_triggered(bool checked = false);
     void on_actionStopCompact_triggered (bool checked = false);
     void on_compactor_finished          ();

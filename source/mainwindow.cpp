@@ -46,6 +46,13 @@ void MainWindow::on_actionOptions_triggered(bool checked /* false */)
   optionsDialog.exec();
 }
 
+void MainWindow::on_actionSendFeedback_triggered(bool checked /* false */) const
+{
+  Q_UNUSED(checked);
+
+  MFeedback::createEmailForm();
+}
+
 void MainWindow::on_actionStartCompact_triggered(bool checked /* false */)
 {
   Q_UNUSED(checked);
