@@ -22,6 +22,7 @@ class MainWindow : public QMainWindow
     void setupWidgets();
 
   private Q_SLOTS:
+    void on_actionAbout_triggered       (bool checked = false);
     void on_actionOptions_triggered     (bool checked = false);
     void on_actionStartCompact_triggered(bool checked = false);
     void on_actionStopCompact_triggered (bool checked = false);

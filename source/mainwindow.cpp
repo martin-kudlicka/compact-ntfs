@@ -31,6 +31,13 @@ void MainWindow::setupWidgets()
   _ui.actionStartCompact->setEnabled(!_locationsModel.isEmpty());
 }
 
+void MainWindow::on_actionAbout_triggered(bool checked /* false */)
+{
+  Q_UNUSED(checked);
+
+  MAboutBox(this).exec();
+}
+
 void MainWindow::on_actionOptions_triggered(bool checked /* false */)
 {
   Q_UNUSED(checked);
