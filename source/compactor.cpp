@@ -8,6 +8,7 @@ Compactor::Compactor(QWidget *parent) : QProgressDialog(parent)
   setLabelText(tr("Compacting ..."));
   setMaximum(0);
 
+  connect(this, &Compactor::compactingFile, this, &Compactor::on_compactingFile);
   connect(&_workerWatcher, &QFutureWatcher<void>::finished, this, &QProgressDialog::accept);
   disconnect(this, &QProgressDialog::canceled, nullptr, nullptr);
   connect(this, &QProgressDialog::canceled, &_workerWatcher, &QFutureWatcher<void>::cancel);
@@ -94,6 +95,8 @@ void Compactor::processFile(const QFileInfo &file) const
     MCompact compact(file.filePath());
     if (compact.method() != gOptions->method())
     {
+      emit compactingFile(file.filePath());
+
       compact.setMethod(gOptions->method());
 
       mInfo() << "compacted " << file.filePath();
@@ -111,4 +114,14 @@ void Compactor::processFile(const QFileInfo &file) const
 void Compactor::processLocation(const LocationSPtr &location) const
 {
   processDir(location->options().path());
+}
+
+void Compactor::on_compactingFile(const QString &filePath)
+{
+  static QFontMetrics fontMetrics(parentWidget()->font());
+
+  auto text  = tr("Compacting ") + filePath + " ...";
+  auto label = fontMetrics.elidedText(text, Qt::ElideMiddle, parentWidget()->width());
+
+  setLabelText(label);
 }
