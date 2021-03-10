@@ -3,15 +3,14 @@
 
 #include "location.h"
 
-class Compactor : public QObject
+class Compactor : public QProgressDialog
 {
   Q_OBJECT
 
   public:
-    Compactor();
+    Compactor(QWidget *parent);
 
-    void start(const LocationSPtrList &locations);
-    void stop();
+    void exec(const LocationSPtrList &locations);
 
   private:
     QFuture<void>        _worker;
@@ -22,9 +21,6 @@ class Compactor : public QObject
     void processDir     (const QDir &dir)              const;
     void processFile    (const QFileInfo &file)        const;
     void processLocation(const LocationSPtr &location) const;
-
-  Q_SIGNALS:
-    void finished();
 };
 
 #endif

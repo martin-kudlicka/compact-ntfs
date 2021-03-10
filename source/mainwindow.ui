@@ -57,6 +57,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="start">
+          <property name="text">
+           <string>&amp;Start</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -116,16 +123,6 @@
    <addaction name="menu_File"/>
    <addaction name="menu_Configuratio"/>
    <addaction name="menu_Help"/>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionStartCompact"/>
-   <addaction name="actionStopCompact"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Exit">

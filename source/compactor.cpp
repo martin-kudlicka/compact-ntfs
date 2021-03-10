@@ -3,12 +3,17 @@
 
 #include "options.h"
 
-Compactor::Compactor()
+Compactor::Compactor(QWidget *parent) : QProgressDialog(parent)
 {
-  connect(&_workerWatcher, &QFutureWatcher<void>::finished, this, &Compactor::finished);
+  setLabelText(tr("Compacting ..."));
+  setMaximum(0);
+
+  connect(&_workerWatcher, &QFutureWatcher<void>::finished, this, &QProgressDialog::accept);
+  disconnect(this, &QProgressDialog::canceled, nullptr, nullptr);
+  connect(this, &QProgressDialog::canceled, &_workerWatcher, &QFutureWatcher<void>::cancel);
 }
 
-void Compactor::start(const LocationSPtrList &locations)
+void Compactor::exec(const LocationSPtrList &locations)
 {
   _worker = QtConcurrent::run([this, locations]
   {
@@ -27,11 +32,8 @@ void Compactor::start(const LocationSPtrList &locations)
     }
   });
   _workerWatcher.setFuture(_worker);
-}
 
-void Compactor::stop()
-{
-  _worker.cancel();
+  QProgressDialog::exec();
 }
 
 bool Compactor::isExcluded(const QString &filePath) const

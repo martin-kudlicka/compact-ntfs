@@ -3,14 +3,13 @@
 
 #include "locationdialog.h"
 #include "optionsdialog.h"
+#include "compactor.h"
 
 MainWindow::MainWindow()
 {
   _ui.setupUi(this);
 
   setupWidgets();
-
-  connect(&_compactor, &Compactor::finished, this, &MainWindow::on_compactor_finished);
 }
 
 void MainWindow::setupWidgets()
@@ -28,7 +27,7 @@ void MainWindow::setupWidgets()
   connect(&_locationsModel,                &LocationsModel::rowsRemoved,           this, &MainWindow::on_locations_rowsRemoved);
   connect(_ui.locations->selectionModel(), &QItemSelectionModel::selectionChanged, this, &MainWindow::on_locations_selectionChanged);
 
-  _ui.actionStartCompact->setEnabled(!_locationsModel.isEmpty());
+  _ui.start->setEnabled(!_locationsModel.isEmpty());
 }
 
 void MainWindow::on_actionAbout_triggered(bool checked /* false */)
@@ -51,38 +50,6 @@ void MainWindow::on_actionSendFeedback_triggered(bool checked /* false */) const
   Q_UNUSED(checked);
 
   MFeedback::createEmailForm();
-}
-
-void MainWindow::on_actionStartCompact_triggered(bool checked /* false */)
-{
-  Q_UNUSED(checked);
-
-  _ui.actionStartCompact->setEnabled(false);
-
-  LocationSPtrList locations;
-  for (decltype(_locationsModel.locations().count()) index = 0; index < _locationsModel.locations().count(); ++index)
-  {
-    locations.append(_locationsModel.locations().get(index));
-  }
-
-  _compactor.start(locations);
-
-  _ui.actionStopCompact->setEnabled(true);
-}
-
-void MainWindow::on_actionStopCompact_triggered(bool checked /* false */)
-{
-  Q_UNUSED(checked);
-
-  _ui.actionStopCompact->setEnabled(false);
-
-  _compactor.stop();
-}
-
-void MainWindow::on_compactor_finished()
-{
-  _ui.actionStopCompact->setEnabled(false);
-  _ui.actionStartCompact->setEnabled(true);
 }
 
 void MainWindow::on_locationAdd_clicked(bool checked /* false */)
@@ -124,7 +91,7 @@ void MainWindow::on_locations_rowsInserted(const QModelIndex &parent, int first,
   Q_UNUSED(first);
   Q_UNUSED(last);
 
-  _ui.actionStartCompact->setEnabled(true);
+  _ui.start->setEnabled(true);
 }
 
 void MainWindow::on_locations_rowsRemoved(const QModelIndex &parent, int first, int last) const
@@ -133,7 +100,7 @@ void MainWindow::on_locations_rowsRemoved(const QModelIndex &parent, int first, 
   Q_UNUSED(first);
   Q_UNUSED(last);
 
-  _ui.actionStartCompact->setEnabled(!_locationsModel.isEmpty());
+  _ui.start->setEnabled(!_locationsModel.isEmpty());
 }
 
 void MainWindow::on_locations_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) const
@@ -145,4 +112,17 @@ void MainWindow::on_locations_selectionChanged(const QItemSelection &selected, c
 
   _ui.locationEdit->setEnabled(isSelected);
   _ui.locationRemove->setEnabled(isSelected);
+}
+
+void MainWindow::on_start_clicked(bool checked /* false */)
+{
+  Q_UNUSED(checked);
+
+  LocationSPtrList locations;
+  for (decltype(_locationsModel.locations().count()) index = 0; index < _locationsModel.locations().count(); ++index)
+  {
+    locations.append(_locationsModel.locations().get(index));
+  }
+
+  Compactor(this).exec(locations);
 }
