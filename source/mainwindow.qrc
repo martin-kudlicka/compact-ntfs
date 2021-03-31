@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="MainWindow">
-    </qresource>
+  <qresource>
+    <file>resources/images/mainwindow.png</file>
+  </qresource>
 </RCC>

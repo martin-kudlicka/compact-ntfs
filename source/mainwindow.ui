@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Compact NTFS</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="mainwindow.qrc">
+    <normaloff>:/resources/images/mainwindow.png</normaloff>:/resources/images/mainwindow.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
