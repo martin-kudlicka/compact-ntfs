@@ -6,6 +6,7 @@
 #include <QtConcurrent>
 #include <QtWidgets>
 
+#include <MkAnalytics>
 #include <MkCore>
 #include <MkCompact>
 #include <MkGui>
