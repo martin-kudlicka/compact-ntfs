@@ -2,6 +2,8 @@
 
 Utility to compress files with original NTFS compression or one of new EXE methods (XPress4K, XPress8K, XPress16K or LZX).
 
+![](https://raw.githubusercontent.com/martin-kudlicka/compact-ntfs/master/web/mainwindow.png)
+
 ## Description
 Compression is applied to all (except excluded) files in specified directories. When file is already compressed with desired method it is skipped.
 Original NTFS compression is set by IO control *FSCTL_SET_COMPRESSION* call. EXE compression is set by IO control *FSCTL_SET_EXTERNAL_BACKING* call.
