@@ -9,7 +9,6 @@
 #include <MkAnalytics>
 #include <MkCore>
 #include <MkCompact>
-#include <MkGui>
 #include <MkSupport>
 #include <MkWidgets>
 

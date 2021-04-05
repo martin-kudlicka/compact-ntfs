@@ -15,13 +15,6 @@ MainWindow::MainWindow()
 void MainWindow::setupWidgets()
 {
   _ui.locations->setModel(&_locationsModel);
-  _ui.logMessages->setModel(&_messageLogModel);
-
-  _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Timestamp), QHeaderView::ResizeToContents);
-  _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Category),  QHeaderView::ResizeToContents);
-  _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Type),      QHeaderView::ResizeToContents);
-  _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Error),     QHeaderView::ResizeToContents);
-  _ui.logMessages->header()->setSectionResizeMode(gsl::narrow<int>(MMessageLogModel::Column::Message),   QHeaderView::Stretch);
 
   connect(&_locationsModel,                &LocationsModel::rowsInserted,          this, &MainWindow::on_locations_rowsInserted);
   connect(&_locationsModel,                &LocationsModel::rowsRemoved,           this, &MainWindow::on_locations_rowsRemoved);

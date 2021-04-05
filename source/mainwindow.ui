@@ -85,14 +85,7 @@
      </layout>
     </item>
     <item>
-     <widget class="QTreeView" name="logMessages">
-      <property name="rootIsDecorated">
-       <bool>false</bool>
-      </property>
-      <property name="itemsExpandable">
-       <bool>false</bool>
-      </property>
-     </widget>
+     <widget class="MMessageLogView" name="widget" native="true"/>
     </item>
    </layout>
   </widget>
@@ -164,6 +157,14 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>MMessageLogView</class>
+   <extends>QWidget</extends>
+   <header location="global">MkWidgets/MMessageLogView</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="mainwindow.qrc"/>
  </resources>

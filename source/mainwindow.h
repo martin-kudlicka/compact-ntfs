@@ -13,9 +13,8 @@ class MainWindow : public QMainWindow
     virtual ~MainWindow() Q_DECL_OVERRIDE Q_DECL_EQ_DEFAULT;
 
   private:
-    LocationsModel   _locationsModel;
-    MMessageLogModel _messageLogModel;
-    Ui::MainWindow   _ui;
+    LocationsModel _locationsModel;
+    Ui::MainWindow _ui;
 
     void setupWidgets();
 
