@@ -10,7 +10,7 @@ Compactor::Compactor(QWidget *parent) : QProgressDialog(parent)
 
   connect(this, &Compactor::compactingFile, this, &Compactor::on_compactingFile);
   connect(&_workerWatcher, &QFutureWatcher<void>::finished, this, &QProgressDialog::accept);
-  disconnect(this, &QProgressDialog::canceled, nullptr, nullptr);
+  disconnect(this, &QProgressDialog::canceled, Q_NULLPTR, Q_NULLPTR);
   connect(this, &QProgressDialog::canceled, &_workerWatcher, &QFutureWatcher<void>::cancel);
 }
 
@@ -102,7 +102,7 @@ void Compactor::processFile(const QFileInfo &file) const
       mInfo() << "compacted " << file.filePath();
     }
   }
-  catch (const MException::MCritical &exception)
+  catch (const MException::Critical &exception)
   {
     if (exception.error() != ERROR_COMPRESSION_NOT_BENEFICIAL)
     {
