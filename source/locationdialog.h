@@ -4,7 +4,7 @@
 #include "ui_locationdialog.h"
 #include "locationoptions.h"
 
-class LocationDialog : public QDialog
+class LocationDialog : public MOptionsDialog<Ui::LocationDialog, LocationOptions>
 {
   Q_OBJECT
 
@@ -13,16 +13,8 @@ class LocationDialog : public QDialog
              LocationDialog(const MUuidPtr &id, QWidget *parent);
     virtual ~LocationDialog() Q_DECL_OVERRIDE Q_DECL_EQ_DEFAULT;
 
-    const LocationOptions &options() const;
-
   private:
-    MWidgetSettings    _widgetSettings;
-    Ui::LocationDialog _ui;
-    LocationOptions    _options;
-
-    void setupSettings();
-
-    virtual void accept() Q_DECL_OVERRIDE;
+    virtual void setupSettings();
 };
 
 #endif

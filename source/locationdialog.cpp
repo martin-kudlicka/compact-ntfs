@@ -1,32 +1,17 @@
 #include "pch.h"
 #include "locationdialog.h"
 
-LocationDialog::LocationDialog(QWidget* parent) : LocationDialog(MUuidPtr::createUuid(), parent)
+LocationDialog::LocationDialog(QWidget* parent) : MOptionsDialog(parent)
 {
 }
 
-LocationDialog::LocationDialog(const MUuidPtr& id, QWidget* parent) : QDialog(parent), _options(id), _widgetSettings(&_options)
+LocationDialog::LocationDialog(const MUuidPtr& id, QWidget* parent) : MOptionsDialog(id, parent)
 {
-  _ui.setupUi(this);
-
-  setupSettings();
-}
-
-const LocationOptions &LocationDialog::options() const
-{
-  return _options;
 }
 
 void LocationDialog::setupSettings()
 {
   _widgetSettings.setWidget(LocationOptions::Property::Path, _ui.path);
 
-  _widgetSettings.load();
-}
-
-void LocationDialog::accept()
-{
-  _widgetSettings.save();
-
-  QDialog::accept();
+  MOptionsDialog::setupSettings();
 }
