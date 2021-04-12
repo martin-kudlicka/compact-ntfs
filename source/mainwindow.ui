@@ -85,7 +85,7 @@
      </layout>
     </item>
     <item>
-     <widget class="MMessageLogView" name="widget" native="true"/>
+     <widget class="MMessageLogWidget" name="widget" native="true"/>
     </item>
    </layout>
   </widget>
@@ -159,9 +159,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>MMessageLogView</class>
+   <class>MMessageLogWidget</class>
    <extends>QWidget</extends>
-   <header location="global">MkWidgets/MMessageLogView</header>
+   <header location="global">MkWidgets/MMessageLogWidget</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
