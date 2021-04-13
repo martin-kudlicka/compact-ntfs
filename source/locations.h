@@ -13,6 +13,8 @@ class Locations : public MSettingsGroup<Location>
 
              Locations();
     virtual ~Locations() Q_DECL_OVERRIDE Q_DECL_EQ_DEFAULT;
+
+    LocationSPtr get(const MUuidPtr &id) const;
 };
 
 #endif

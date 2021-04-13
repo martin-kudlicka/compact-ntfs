@@ -7,3 +7,8 @@ Locations::Locations()
 {
   _settings.beginGroup(Property::Group);
 }
+
+LocationSPtr Locations::get(const MUuidPtr &id) const
+{
+  return QSharedPointer<Location>::create(id);
+}
